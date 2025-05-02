@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>APK 介绍 | 高效便捷的本地文件管理器</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.bootcss.com/limonte-sweetalert2/11.16.1/sweetalert2.all.min.js"></script>
+	<link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.6.0/css/all.min.css" rel="stylesheet">
+	<style>
+		@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+		
+		body {
+		  font-family: 'Inter', sans-serif;
+		  background-color: #f8fafc;
+		}
+		
+		/* 响应式导航栏 */
+		.nav-container {
+		  display: flex;
+		  flex-wrap: wrap;
+		  justify-content: center;
+		  gap: 8px;
+		  padding: 12px;
+		  background: white;
+		  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+		  position: sticky;
+		  top: 0;
+		  z-index: 10;
+		}
+		
+		.nav-btn {
+		  padding: 8px 16px;
+		  border-radius: 20px;
+		  background: #f1f5f9;
+		  transition: all 0.3s;
+		  white-space: nowrap;
+		  display: inline-flex;
+		  align-items: center;
+		  font-weight: 500;
+		}
+		
+		.nav-btn.active {
+		  background: #3b82f6;
+		  color: white;
+		  box-shadow: 0 2px 5px rgba(59, 130, 246, 0.3);
+		}
+		
+		/* 内容区域动画 */
+		.content-section {
+		  display: none;
+		  animation: fadeIn 0.5s ease-out;
+		}
+		
+		.content-section.active {
+		  display: block;
+		}
+		
+		@keyframes fadeIn {
+		  from { opacity: 0; transform: translateY(10px); }
+		  to { opacity: 1; transform: translateY(0); }
+		}
+		
+		.offline-icon {
+		  position: relative;
+		  display: inline-block;
+		  width: 1em;
+		  margin-right: 12px;
+		}
+		.offline-icon .fa-signal {
+		  position: absolute;
+		  left: 0;
+		  color: #3b82f6;
+		}
+		.offline-icon .fa-slash {
+		  position: absolute;
+		  left: 0;
+		  color: #ef4444;
+		  transform: rotate(15deg);
+		}
+		
+		/* 卡片悬停效果 */
+		.feature-card {
+		  transition: all 0.3s ease;
+		  border-left: 4px solid transparent;
+		}
+		.feature-card:hover {
+		  transform: translateY(-3px);
+		  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50">
+	<!-- 头部 -->
+	<header class="bg-gradient-to-r from-blue-500 to-indigo-600 text-white py-12">
+		<div class="container mx-auto px-6 text-center">
+			<div class="max-w-3xl mx-auto">
+				<h1 class="text-4xl md:text-5xl font-bold mb-4">探索全新文管体验</h1>
+				<p class="text-xl md:text-2xl text-blue-100 mb-8">美观，高效，优雅，让您的移动端体验更上一层楼！</p>
+				<div class="flex flex-wrap justify-center gap-4">
+					<a href="https://www.123865.com/s/JiVrTd-UOlwd" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium inline-flex items-center hover:bg-blue-50 transition">
+						<i class="fas fa-download mr-2"></i> 立即下载
+					</a>
+					<a href="#" id="videoDemoBtn" class="bg-blue-700 text-white px-6 py-3 rounded-lg font-medium inline-flex items-center hover:bg-blue-800 transition">
+						<i class="fas fa-play-circle mr-2"></i> 视频教程
+					</a>
+				</div>
+			</div>
+		</div>
+	</header>
+
+	<!-- 导航栏 -->
+	<nav>
+		<div class="nav-container">
+			<button class="nav-btn active" data-section="core-features">
+				<i class="fas fa-star mr-2"></i>主要亮点
+			</button>
+			<button class="nav-btn" data-section="app-characteristics">
+				<i class="fas fa-sliders-h mr-2"></i>应用特性
+			</button>
+			<button class="nav-btn" data-section="quick-start">
+				<i class="fas fa-rocket mr-2"></i>快速开始
+			</button>
+			<button class="nav-btn" data-section="tech-principles">
+				<i class="fas fa-cogs mr-2"></i>技术原理
+			</button>
+		</div>
+	</nav>
+
+	<!-- 内容区域 -->
+	<main class="container mx-auto px-4 py-8">
+		<!-- 核心功能 -->
+		<section id="core-features" class="content-section active">
+			<div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+				<div class="p-6 md:p-8">
+					<h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-star text-blue-500 mr-3"></i>主要亮点
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="text-blue-500 text-2xl mb-3">
+								<i class="fas fa-bolt"></i>
+							</div>
+							<h3 class="text-xl font-semibold text-gray-800 mb-2">性能优先</h3>
+							<p class="text-gray-600">采用新技术以及编译器优化确保快速响应和低资源占用，对于中、高端设备来说如虎添翼，即使在低端设备上也能流畅运行。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="text-blue-500 text-2xl mb-3">
+								<i class="fas fa-user-friends"></i>
+							</div>
+							<h3 class="text-xl font-semibold text-gray-800 mb-2">用户友好</h3>
+							<p class="text-gray-600">根据Material Design 3设计，赏心悦目，代码符合谷歌规范，无论您是普通用户还是极客皆可轻松上手。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="text-blue-500 text-2xl mb-3">
+								<i class="fas fa-mobile-alt"></i>
+							</div>
+							<h3 class="text-xl font-semibold text-gray-800 mb-2">极致优化</h3>
+							<p class="text-gray-600">能够充分地利用和调度手机多核性能，在内存压力大的时候仍有不俗的性能表现，对非UFS储存设备（如eMMC）也有着良好的性能支持。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="text-blue-500 text-2xl mb-3">
+								<i class="fas fa-brands fa-linux"></i>
+							</div>
+							<h3 class="text-xl font-semibold text-gray-800 mb-2">Linux友好</h3>
+							<p class="text-gray-600">采用正确的设计，结合VFS（虚拟文件系统）统一管理，深入文件系统底层，而市面上大多数文管并非如此，所以他们的技术远远落后。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 应用特性 -->
+		<section id="app-characteristics" class="content-section">
+			<div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+				<div class="p-6 md:p-8">
+					<h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-sliders-h text-blue-500 mr-3"></i>应用特性
+					</h2>
+					<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="flex items-center mb-3">
+								<span class="offline-icon" style="width: 1.2em; height: 1em;">
+									<i class="fas fa-signal"></i>
+									<i class="fas fa-slash"></i>
+								</span>
+								<h3 class="text-xl font-semibold text-gray-800">完全本地</h3>
+							</div>
+							<p class="text-gray-600">尊重您的隐私，仅索要最少的权限，从不索要联网权限，以最少的权限做最好的事。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="flex items-center mb-3">
+								<i class="fas fa-brands fa-android text-blue-500 text-xl mr-3"></i>
+								<h3 class="text-xl font-semibold text-gray-800">全网首发</h3>
+							</div>
+							<p class="text-gray-600">全网首个保持技术最前沿的文管，全网首个支持inode删除的文管，可能是全网首个支持glob搜索的文管。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="flex items-center mb-3">
+								<i class="fas fa-bolt-lightning text-blue-500 text-xl mr-3"></i>
+								<h3 class="text-xl font-semibold text-gray-800">极高效率</h3>
+							</div>
+							<p class="text-gray-600">经过特殊算法优化的复制，移动，删除功能，保持超一流效率，毫不吹嘘地说，这三个功能单论效率秒杀市面上一众收费的文管。</p>
+						</div>
+
+						<div class="feature-card bg-gray-50 p-6 rounded-lg">
+							<div class="flex items-center mb-3">
+								<i class="fas fa-language text-blue-500 text-xl mr-3"></i>
+								<h3 class="text-xl font-semibold text-gray-800">深度定制</h3>
+							</div>
+							<p class="text-gray-600">专为中文环境设计，且安装包体积尽可能的缩小，真正做到小而美。</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 快速开始 -->
+		<section id="quick-start" class="content-section">
+			<div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+				<div class="p-6 md:p-8">
+					<h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-rocket text-blue-500 mr-3"></i>快速开始
+					</h2>
+					<div class="space-y-6">
+						<div class="flex items-start">
+							<div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">
+								<span class="font-bold">1</span>
+							</div>
+							<div>
+								<h3 class="text-xl font-semibold text-gray-800 mb-2">下载安装</h3>
+								<p class="text-gray-600">您可以在官网下载CI (测试) 版本或release版本 (目前仍处于开发阶段暂未release)，版本间为覆盖安装如有需要请您自行备份</p>
+							</div>
+						</div>
+
+						<div class="flex items-start">
+							<div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">
+								<span class="font-bold">2</span>
+							</div>
+							<div>
+								<h3 class="text-xl font-semibold text-gray-800 mb-2">顷刻上手</h3>
+								<p class="text-gray-600">您可以放心尝试各个功能的效果，如有BUG也欢迎反馈，我会尽可能第一时间修复它</p>
+							</div>
+						</div>
+
+						<div class="flex items-start">
+							<div class="flex-shrink-0 bg-blue-100 text-blue-600 rounded-full w-10 h-10 flex items-center justify-center mr-4 mt-1">
+								<span class="font-bold">3</span>
+							</div>
+							<div>
+								<h3 class="text-xl font-semibold text-gray-800 mb-2">愉快体验</h3>
+								<p class="text-gray-600">相信可以为您带来一个愉快的体验过程，如有让应用变得更好的意见和建议，欢迎提出，我会视情况考量</p>
+							</div>
+						</div>
+
+						<div class="mt-8 bg-blue-50 p-6 rounded-lg">
+							<h3 class="text-xl font-semibold text-gray-800 mb-4">准备好开始了吗？</h3>
+							<div class="flex flex-wrap gap-4">
+								<a href="#" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-medium inline-flex items-center hover:bg-blue-700 transition">
+									<i class="fas fa-download mr-2"></i> 最新版本 (v1.0-CI-9)
+								</a>
+								<a href="#" class="bg-white text-blue-600 border border-blue-200 px-6 py-3 rounded-lg font-medium inline-flex items-center hover:bg-blue-50 transition">
+									<i class="fas fa-file-alt mr-2"></i> 查看用户手册
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- 技术原理 -->
+		<section id="tech-principles" class="content-section">
+			<div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
+				<div class="p-6 md:p-8">
+					<h2 class="text-3xl font-bold text-gray-800 mb-6 flex items-center">
+						<i class="fas fa-cogs text-blue-500 mr-3"></i>技术原理
+					</h2>
+					<div class="space-y-6">
+						<div class="bg-gray-50 p-6 rounded-lg">
+							<h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+								<i class="fas fa-project-diagram text-blue-500 mr-3"></i>架构设计
+							</h3>
+							<p class="text-gray-600 mb-4">MVVM + MVI双层架构，解耦合设计外加防御性编程，便于维护和扩展。</p>
+							<div class="bg-white p-4 rounded border border-gray-200">
+								<div class="flex items-center text-sm text-gray-500 mb-2">
+									<i class="fas fa-layer-group mr-2"></i>
+									<span>总体分层：</span>
+								</div>
+								<div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+									<div class="bg-blue-50 text-blue-700 px-3 py-2 rounded text-sm">UI层 (Jetpack Compose，降码增效，省去解析XML的额外开销)</div>
+									<div class="bg-blue-50 text-blue-700 px-3 py-2 rounded text-sm">Code层 (Kotlin占80%、Java占19%、C++占1%)</div>
+									<div class="bg-blue-50 text-blue-700 px-3 py-2 rounded text-sm">Abstract层 (魔改的开源VFS)</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="bg-gray-50 p-6 rounded-lg">
+							<h3 class="text-xl font-semibold text-gray-800 mb-3 flex items-center">
+								<i class="fas fa-database text-blue-500 mr-3"></i>部分技术原理介绍
+							</h3>
+							<p class="text-gray-600 mb-2">下面是一些实际开发中的技术设计</p>
+							<ul class="list-disc pl-5 text-gray-600 space-y-1">
+								<li>复制功能（单独实现，不基于像Files.copy等任何Api）用到了AsynchronousFileChannel + CompletableFuture（由于安卓一些限制，这是除了mmap以及零拷贝 (transferTo、transferFrom) 外的最优解了，为什么不采用它们呢？原因就是它们单次都限制在2G左右，对投入上线使用不利 (因为大多数时候大家操作的都是大量小文件)，且回收堆外内存的时机也难以把握）</li>
+								<li>删除数量小于1000个时直接采用底层unlinkat，大于1000时利用特殊优化的算法 (Kotlin实现)，并且都是异步（一旦开始，所有损失均无法挽回）</li>
+								<li>崩溃异常的日志写出利用了transferFrom</li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</section>
+	</main>
+
+	<!-- 页脚 -->
+	<footer class="bg-gray-800 text-white py-12">
+		<div class="container mx-auto px-6">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+				<div>
+					<h3 class="text-xl font-bold mb-4">特别注明</h3>
+					<p class="text-gray-400 mb-4">本软件的定位为纯本地文件管理器，如您有网络储存如FTP、SMB一类的需求请移步其它文件管理器，对此我表示遗憾，不是同一个赛道。软件目前还处于开发测试阶段不代表其最终品质！</p>
+					<div class="flex space-x-4">
+						<a href="https://t.me/Yuan_x6" class="text-gray-400 hover:text-white transition">
+							<i class="fab fa-telegram"></i>
+						</a>
+						<a href="https://github.com/binx6" class="text-gray-400 hover:text-white transition">
+							<i class="fab fa-github"></i>
+						</a>
+					</div>
+				</div>
+
+				<div>
+					<h3 class="text-xl font-bold mb-4">更多</h3>
+					<ul class="space-y-2">
+						<li><a href="#" class="text-gray-400 hover:text-white transition">功能列表</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-white transition">更新日志</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3 class="text-xl font-bold mb-4">资源</h3>
+					<ul class="space-y-2">
+						<li><a href="#" class="text-gray-400 hover:text-white transition">文档中心</a></li>
+						<li><a href="#" class="text-gray-400 hover:text-white transition">常见问题</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h3 class="text-xl font-bold mb-4">联系开发者（我）</h3>
+					<ul class="space-y-2">
+						<li class="flex items-center">
+							<i class="fas fa-envelope text-gray-400 mr-2"></i>
+							<a href="mailto:binx6@foxmail.com" class="text-gray-400 hover:text-white transition">binx6@foxmail.com (非必要我可能忽略)</a>
+						</li>
+						<li class="flex items-center">
+							<i class="fab fa-hashtag text-gray-400 mr-2"></i>
+							<a href="https://simplex.chat/contact#/?v=2-7&smp=smp%3A%2F%2F6iIcWT_dF2zN_w5xzZEY7HI2Prbh3ldP07YTyDexPjE%3D%40smp10.simplex.im%2FmVa9tFs8W9OOgSlPRYdJSJQjOxXXK1rH%23%2F%3Fv%3D1-4%26dh%3DMCowBQYDK2VuAyEADUJUvs9w14d8_xv9NQq155shfZCPHR4mRTRhBOlNdSs%253D%26q%3Dc%26srv%3Drb2pbttocvnbrngnwziclp2f4ckjq65kebafws6g4hy22cdaiv5dwjqd.onion&data=%7B%22groupLinkId%22%3A%22oiCX8VYokwKnMFx2kjNTUg%3D%3D%22%7D" target="_blank" class="text-gray-400 hover:text-white transition">SimpleX交流群 (无用户ID，尊重您的隐私)</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400">
+				<p>Copyright © 2025 binx6 保留所有权利。</p>
+				<!-- 运行时间显示 -->
+				<div class="mt-2">
+					<span id="runtimeSpan" style="font-weight: 600;"></span>
+				</div>
+			</div>
+
+			<style>
+				#runtimeSpan {
+				  animation: colorChange 10s infinite;
+				  display: inline-block;
+				  padding: 2px 8px;
+				  border-radius: 4px;
+				  background: rgba(255,255,255,0.05);
+				}
+				@keyframes colorChange {
+				  0% { color: #AAC9CE; }
+				  25% { color: #F56A79; }
+				  50% { color: #1AA6B7; }
+				  75% { color: #FCF9F0; }
+				  100% { color: #E73B3E; }
+				}
+			</style>
+
+			<script>
+				function _0x3bb5(_0x9e8a47,_0x5a3afd){var _0x494d31=_0x494d();return _0x3bb5=function(_0x3bb583,_0xd32dd2){_0x3bb583=_0x3bb583-0xc1;var _0x3e6f6a=_0x494d31[_0x3bb583];return _0x3e6f6a;},_0x3bb5(_0x9e8a47,_0x5a3afd);}(function(_0x36403d,_0x57bcca){var _0x3c7b4c=_0x3bb5,_0x1bf0d5=_0x36403d();while(!![]){try{var _0xc22451=-parseInt(_0x3c7b4c(0xd3))/0x1*(parseInt(_0x3c7b4c(0xc2))/0x2)+-parseInt(_0x3c7b4c(0xdd))/0x3+parseInt(_0x3c7b4c(0xd1))/0x4*(parseInt(_0x3c7b4c(0xe1))/0x5)+-parseInt(_0x3c7b4c(0xe2))/0x6+-parseInt(_0x3c7b4c(0xd8))/0x7+-parseInt(_0x3c7b4c(0xdf))/0x8*(-parseInt(_0x3c7b4c(0xca))/0x9)+parseInt(_0x3c7b4c(0xc6))/0xa*(parseInt(_0x3c7b4c(0xc9))/0xb);if(_0xc22451===_0x57bcca)break;else _0x1bf0d5['push'](_0x1bf0d5['shift']());}catch(_0x3bc664){_0x1bf0d5['push'](_0x1bf0d5['shift']());}}}(_0x494d,0x24ac4));function showRuntime(){var _0x49dc8b=_0x3bb5,_0x169ee1={'\x56\x73\x70\x6e\x75':_0x49dc8b(0xcf),'\x65\x6d\x53\x46\x48':function(_0x570f5b,_0x5171fd){return _0x570f5b*_0x5171fd;},'\x4b\x54\x73\x4b\x4d':function(_0x4ab4f0,_0x29b2e6){return _0x4ab4f0-_0x29b2e6;},'\x6b\x4b\x72\x54\x55':function(_0x1eff12,_0x3a0f43){return _0x1eff12*_0x3a0f43;},'\x62\x59\x64\x69\x44':function(_0x355d17,_0x254ba1){return _0x355d17<_0x254ba1;},'\x65\x64\x77\x63\x72':function(_0x1a5f84,_0x10192a){return _0x1a5f84+_0x10192a;},'\x42\x72\x54\x48\x72':function(_0x1a7d6d,_0x22b7cc){return _0x1a7d6d<_0x22b7cc;},'\x6d\x71\x63\x50\x48':_0x49dc8b(0xde),'\x58\x63\x53\x75\x68':function(_0x151b14,_0x18fe50){return _0x151b14/_0x18fe50;},'\x78\x66\x6b\x67\x53':_0x49dc8b(0xd0),'\x63\x64\x69\x78\x74':function(_0x2720c1,_0x485a56){return _0x2720c1-_0x485a56;},'\x6c\x63\x56\x48\x4c':function(_0x43ea02,_0x39d017){return _0x43ea02+_0x39d017;},'\x43\x6a\x4f\x74\x70':function(_0x55f9ed,_0x25d83d){return _0x55f9ed+_0x25d83d;},'\x69\x79\x4a\x41\x6f':function(_0xafc26,_0x53510a){return _0xafc26+_0x53510a;},'\x55\x4e\x6d\x4a\x65':function(_0xe0a3bc,_0x163412){return _0xe0a3bc+_0x163412;},'\x7a\x45\x50\x47\x66':function(_0x4116eb,_0x5b8149){return _0x4116eb+_0x5b8149;},'\x72\x77\x67\x6d\x55':_0x49dc8b(0xd2)},_0x5d5fcb=_0x169ee1[_0x49dc8b(0xc5)]['\x73\x70\x6c\x69\x74']('\x7c'),_0x3fd852=0x0;while(!![]){switch(_0x5d5fcb[_0x3fd852++]){case'\x30':var _0xfac1f6=_0x169ee1[_0x49dc8b(0xc4)](_0x3c79ac-_0x2eca4a,0x18);continue;case'\x31':var _0x2a9cdc=Math[_0x49dc8b(0xc8)](_0xfac1f6);continue;case'\x32':var _0x2ec61a=Math[_0x49dc8b(0xc8)](_0x169ee1[_0x49dc8b(0xe0)](_0x2f808e,_0x11a193)*0x3c);continue;case'\x33':var _0x11a193=Math[_0x49dc8b(0xc8)](_0x169ee1[_0x49dc8b(0xc1)](_0xfac1f6-_0x2a9cdc,0x3c));continue;case'\x34':var _0x2eca4a=Math[_0x49dc8b(0xc8)](_0x3c79ac);continue;case'\x35':var _0x2ec61a=_0x169ee1['\x62\x59\x64\x69\x44'](_0x2ec61a,0xa)?_0x169ee1[_0x49dc8b(0xcc)]('\x30',_0x2ec61a):_0x2ec61a;continue;case'\x36':var _0x2f808e=_0x169ee1[_0x49dc8b(0xe0)](_0xfac1f6,_0x2a9cdc)*0x3c;continue;case'\x37':var _0x2a9cdc=_0x169ee1[_0x49dc8b(0xdb)](_0x2a9cdc,0xa)?'\x30'+_0x2a9cdc:_0x2a9cdc;continue;case'\x38':window['\x73\x65\x74\x54\x69\x6d\x65\x6f\x75\x74'](_0x169ee1[_0x49dc8b(0xda)],0x3e8);continue;case'\x39':var _0xf4b1f8=new Date();continue;case'\x31\x30':var _0x4f8c65=_0x169ee1[_0x49dc8b(0xc4)](0x18*0x3c,0x3c)*0x3e8;continue;case'\x31\x31':var _0x3c79ac=_0x169ee1[_0x49dc8b(0xce)](_0x5c764a,_0x4f8c65);continue;case'\x31\x32':var _0x292512=new Date(_0x169ee1[_0x49dc8b(0xd5)]);continue;case'\x31\x33':var _0x5c764a=_0x169ee1[_0x49dc8b(0xcb)](_0xf4b1f8[_0x49dc8b(0xd7)](),_0x292512[_0x49dc8b(0xd7)]());continue;case'\x31\x34':var _0x11a193=_0x169ee1[_0x49dc8b(0xdb)](_0x11a193,0xa)?_0x169ee1[_0x49dc8b(0xcd)]('\x30',_0x11a193):_0x11a193;continue;case'\x31\x35':runtimeSpan[_0x49dc8b(0xc3)]=_0x169ee1['\x43\x6a\x4f\x74\x70'](_0x169ee1[_0x49dc8b(0xd4)](_0x169ee1[_0x49dc8b(0xcc)](_0x169ee1[_0x49dc8b(0xdc)](_0x169ee1[_0x49dc8b(0xc7)](_0x169ee1[_0x49dc8b(0xd4)](_0x169ee1[_0x49dc8b(0xd6)](_0x169ee1[_0x49dc8b(0xd9)],_0x2eca4a),'\u5929')+_0x2a9cdc,'\u5c0f\u65f6'),_0x11a193),'\u5206'),_0x2ec61a),'\u79d2');continue;}break;}}showRuntime();function _0x494d(){var _0x17c925=['\x32\x34\x34\x31\x31\x71\x52\x72\x4e\x6e\x4b','\x73\x68\x6f\x77\x52\x75\x6e\x74\x69\x6d\x65\x28\x29','\x39\x34\x35\x30\x36\x34\x6e\x50\x45\x4a\x72\x4d','\x4b\x54\x73\x4b\x4d','\x34\x37\x34\x32\x34\x35\x64\x66\x52\x43\x78\x54','\x31\x32\x35\x36\x38\x38\x51\x55\x4a\x46\x57\x67','\x6b\x4b\x72\x54\x55','\x31\x31\x37\x35\x38\x57\x44\x4c\x71\x75\x76','\x69\x6e\x6e\x65\x72\x48\x54\x4d\x4c','\x65\x6d\x53\x46\x48','\x56\x73\x70\x6e\x75','\x33\x31\x38\x37\x30\x68\x59\x4f\x4c\x42\x7a','\x55\x4e\x6d\x4a\x65','\x66\x6c\x6f\x6f\x72','\x37\x31\x35\x45\x53\x42\x55\x78\x4b','\x31\x38\x4d\x53\x47\x6b\x42\x4a','\x63\x64\x69\x78\x74','\x65\x64\x77\x63\x72','\x6c\x63\x56\x48\x4c','\x58\x63\x53\x75\x68','\x38\x7c\x31\x32\x7c\x39\x7c\x31\x33\x7c\x31\x30\x7c\x31\x31\x7c\x34\x7c\x30\x7c\x31\x7c\x36\x7c\x33\x7c\x32\x7c\x37\x7c\x31\x34\x7c\x35\x7c\x31\x35','\x35\x2f\x30\x31\x2f\x32\x30\x32\x35\x20\x30\x30\x3a\x30\x30\x3a\x30\x30','\x31\x32\x67\x49\x64\x57\x66\x50','\u672c\u7ad9\u5df2\u8fd0\u884c\x3a\x20','\x34\x39\x4f\x56\x4c\x55\x78\x54','\x69\x79\x4a\x41\x6f','\x78\x66\x6b\x67\x53','\x7a\x45\x50\x47\x66','\x67\x65\x74\x54\x69\x6d\x65','\x31\x38\x32\x34\x32\x30\x30\x78\x6c\x6d\x6e\x48\x73','\x72\x77\x67\x6d\x55','\x6d\x71\x63\x50\x48','\x42\x72\x54\x48\x72','\x43\x6a\x4f\x74\x70'];_0x494d=function(){return _0x17c925;};return _0x494d();}
+			</script>
+	</footer>
+
+	<script>
+		function _0xab1c(_0x1330db,_0x444633){const _0x19a013=_0x19a0();return _0xab1c=function(_0xab1ce7,_0x2382b7){_0xab1ce7=_0xab1ce7-0x1f4;let _0x55675f=_0x19a013[_0xab1ce7];return _0x55675f;},_0xab1c(_0x1330db,_0x444633);}const _0x273643=_0xab1c;(function(_0x2922f0,_0x59ba43){const _0x49c9b3=_0xab1c,_0x4e7c69=_0x2922f0();while(!![]){try{const _0x57c5a5=parseInt(_0x49c9b3(0x202))/0x1+parseInt(_0x49c9b3(0x201))/0x2*(-parseInt(_0x49c9b3(0x210))/0x3)+parseInt(_0x49c9b3(0x1fd))/0x4+-parseInt(_0x49c9b3(0x207))/0x5+parseInt(_0x49c9b3(0x1f7))/0x6*(parseInt(_0x49c9b3(0x20a))/0x7)+parseInt(_0x49c9b3(0x1fe))/0x8*(-parseInt(_0x49c9b3(0x206))/0x9)+parseInt(_0x49c9b3(0x20d))/0xa*(parseInt(_0x49c9b3(0x20e))/0xb);if(_0x57c5a5===_0x59ba43)break;else _0x4e7c69['push'](_0x4e7c69['shift']());}catch(_0x354d78){_0x4e7c69['push'](_0x4e7c69['shift']());}}}(_0x19a0,0x8fd7c),document['\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72'](_0x273643(0x1f4),function(){const _0x360d03=_0x273643,_0x1688e5={'\x51\x41\x66\x65\x49':_0x360d03(0x1fb),'\x6f\x46\x77\x56\x66':_0x360d03(0x1fc),'\x61\x72\x41\x76\x59':_0x360d03(0x20b),'\x45\x45\x4e\x56\x67':_0x360d03(0x209),'\x4b\x72\x4d\x67\x42':_0x360d03(0x20c)},_0x143192=document[_0x360d03(0x20f)](_0x1688e5[_0x360d03(0x1f9)]),_0x340c33=document[_0x360d03(0x20f)](_0x1688e5[_0x360d03(0x208)]);_0x143192[_0x360d03(0x1fa)](_0x2bd78d=>{const _0x266c92=_0x360d03,_0x1fa067={'\x4a\x49\x50\x4f\x52':_0x1688e5['\x51\x41\x66\x65\x49'],'\x67\x48\x51\x6c\x6a':_0x1688e5[_0x266c92(0x203)]};_0x2bd78d[_0x266c92(0x211)](_0x1688e5[_0x266c92(0x1f6)],function(){const _0x382a0a=_0x266c92;_0x143192[_0x382a0a(0x1fa)](_0x2fabc8=>_0x2fabc8[_0x382a0a(0x1f8)]['\x72\x65\x6d\x6f\x76\x65']('\x61\x63\x74\x69\x76\x65')),_0x340c33['\x66\x6f\x72\x45\x61\x63\x68'](_0x44f926=>_0x44f926['\x63\x6c\x61\x73\x73\x4c\x69\x73\x74'][_0x382a0a(0x205)](_0x382a0a(0x1fc))),this[_0x382a0a(0x1f8)][_0x382a0a(0x1ff)](_0x382a0a(0x1fc));const _0x4cebb8=this[_0x382a0a(0x212)](_0x1fa067[_0x382a0a(0x1f5)]);document[_0x382a0a(0x204)](_0x4cebb8)['\x63\x6c\x61\x73\x73\x4c\x69\x73\x74'][_0x382a0a(0x1ff)](_0x1fa067[_0x382a0a(0x200)]);});}),document['\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72'](_0x360d03(0x213))['\x63\x6c\x69\x63\x6b']();}));function _0x19a0(){const _0x3f8116=['\x31\x38\x34\x35\x30\x34\x30\x64\x52\x74\x52\x62\x54','\x61\x64\x64','\x67\x48\x51\x6c\x6a','\x32\x30\x44\x78\x77\x49\x59\x4a','\x31\x31\x37\x34\x35\x35\x4b\x50\x7a\x71\x4e\x74','\x6f\x46\x77\x56\x66','\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64','\x72\x65\x6d\x6f\x76\x65','\x31\x38\x43\x56\x54\x58\x56\x4d','\x33\x34\x35\x32\x39\x35\x35\x47\x48\x68\x41\x78\x67','\x4b\x72\x4d\x67\x42','\x2e\x6e\x61\x76\x2d\x62\x74\x6e','\x33\x37\x39\x30\x36\x36\x38\x63\x47\x50\x79\x70\x5a','\x63\x6c\x69\x63\x6b','\x2e\x63\x6f\x6e\x74\x65\x6e\x74\x2d\x73\x65\x63\x74\x69\x6f\x6e','\x36\x35\x36\x33\x30\x30\x64\x46\x5a\x54\x69\x78','\x31\x39\x38\x78\x75\x4b\x4e\x79\x71','\x71\x75\x65\x72\x79\x53\x65\x6c\x65\x63\x74\x6f\x72\x41\x6c\x6c','\x32\x30\x36\x36\x30\x34\x6a\x67\x46\x6d\x78\x69','\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72','\x67\x65\x74\x41\x74\x74\x72\x69\x62\x75\x74\x65','\x2e\x6e\x61\x76\x2d\x62\x74\x6e\x2e\x61\x63\x74\x69\x76\x65','\x44\x4f\x4d\x43\x6f\x6e\x74\x65\x6e\x74\x4c\x6f\x61\x64\x65\x64','\x4a\x49\x50\x4f\x52','\x61\x72\x41\x76\x59','\x31\x32\x4e\x50\x44\x72\x58\x4f','\x63\x6c\x61\x73\x73\x4c\x69\x73\x74','\x45\x45\x4e\x56\x67','\x66\x6f\x72\x45\x61\x63\x68','\x64\x61\x74\x61\x2d\x73\x65\x63\x74\x69\x6f\x6e','\x61\x63\x74\x69\x76\x65','\x31\x39\x31\x34\x37\x32\x75\x62\x4c\x66\x72\x66'];_0x19a0=function(){return _0x3f8116;};return _0x19a0();}
+	</script>
+	<script>
+		function _0x5b71(_0x1a7bea,_0x293971){var _0x1c4ef7=_0x1c4e();return _0x5b71=function(_0x5b714f,_0x309ee9){_0x5b714f=_0x5b714f-0x125;var _0x59c1c1=_0x1c4ef7[_0x5b714f];return _0x59c1c1;},_0x5b71(_0x1a7bea,_0x293971);}var _0x63d418=_0x5b71;function _0x1c4e(){var _0x4ed6d0=['\x39\x36\x39\x37\x35\x39\x53\x47\x58\x4d\x78\x69','\x49\x48\x72\x52\x5a','\x23\x33\x62\x38\x32\x66\x36','\x32\x38\x34\x43\x50\x51\x66\x51\x68','\x61\x64\x64\x45\x76\x65\x6e\x74\x4c\x69\x73\x74\x65\x6e\x65\x72','\u672c\u6765\u662f\u6709\u7684\uff0c\u964d\u672c\u589e\u6548\u5220\u6389\u4e86','\x6d\x52\x78\x72\x71','\x66\x6d\x4d\x61\x4f','\x35\x35\x36\x36\x6c\x56\x62\x7a\x4d\x42','\x63\x6c\x69\x63\x6b','\x38\x50\x66\x53\x56\x6c\x71','\u8fd8\u8bf7\u81ea\u884c\u4f53\u9a8c\u54c8','\x71\x75\x65\x73\x74\x69\x6f\x6e','\x35\x30\x37\x33\x36\x37\x42\x63\x4d\x79\x6a\x77','\x37\x33\x34\x31\x46\x56\x7a\x65\x73\x6a','\x34\x36\x37\x38\x36\x30\x38\x66\x45\x4d\x52\x52\x73','\x76\x69\x64\x65\x6f\x44\x65\x6d\x6f\x42\x74\x6e','\x33\x30\x39\x33\x36\x4e\x54\x57\x54\x48\x53','\x32\x35\x4f\x62\x42\x73\x6e\x78','\x70\x72\x65\x76\x65\x6e\x74\x44\x65\x66\x61\x75\x6c\x74','\u4f60\u5e72\u561b\u54c8\u54c8\u54ce\u5466','\x36\x31\x32\x33\x38\x43\x47\x42\x44\x7a\x6d','\x31\x30\x31\x30\x6e\x6d\x46\x4b\x43\x71','\x36\x57\x78\x6d\x56\x71\x4e'];_0x1c4e=function(){return _0x4ed6d0;};return _0x1c4e();}(function(_0x5e05dc,_0x25dd04){var _0x19f2d1=_0x5b71,_0xc4debc=_0x5e05dc();while(!![]){try{var _0x10d9ee=-parseInt(_0x19f2d1(0x131))/0x1*(parseInt(_0x19f2d1(0x133))/0x2)+parseInt(_0x19f2d1(0x12a))/0x3*(parseInt(_0x19f2d1(0x137))/0x4)+parseInt(_0x19f2d1(0x12e))/0x5*(-parseInt(_0x19f2d1(0x12d))/0x6)+-parseInt(_0x19f2d1(0x129))/0x7*(parseInt(_0x19f2d1(0x126))/0x8)+-parseInt(_0x19f2d1(0x134))/0x9+parseInt(_0x19f2d1(0x132))/0xa*(-parseInt(_0x19f2d1(0x13c))/0xb)+parseInt(_0x19f2d1(0x12b))/0xc;if(_0x10d9ee===_0x25dd04)break;else _0xc4debc['push'](_0xc4debc['shift']());}catch(_0x1d0808){_0xc4debc['push'](_0xc4debc['shift']());}}}(_0x1c4e,0x1dfa5),document['\x67\x65\x74\x45\x6c\x65\x6d\x65\x6e\x74\x42\x79\x49\x64'](_0x63d418(0x12c))[_0x63d418(0x138)](_0x63d418(0x125),async function(_0x3a4689){var _0x435e0f=_0x63d418,_0x3db236={'\x49\x48\x72\x52\x5a':_0x435e0f(0x139),'\x6d\x52\x78\x72\x71':_0x435e0f(0x127),'\x66\x6d\x4d\x61\x4f':_0x435e0f(0x128),'\x73\x77\x41\x53\x63':_0x435e0f(0x136)};_0x3a4689[_0x435e0f(0x12f)](),Swal['\x66\x69\x72\x65']({'\x74\x69\x74\x6c\x65':_0x3db236[_0x435e0f(0x135)],'\x74\x65\x78\x74':_0x3db236[_0x435e0f(0x13a)],'\x69\x63\x6f\x6e':_0x3db236[_0x435e0f(0x13b)],'\x63\x6f\x6e\x66\x69\x72\x6d\x42\x75\x74\x74\x6f\x6e\x54\x65\x78\x74':_0x435e0f(0x130),'\x63\x6f\x6e\x66\x69\x72\x6d\x42\x75\x74\x74\x6f\x6e\x43\x6f\x6c\x6f\x72':_0x3db236['\x73\x77\x41\x53\x63']});}));
+	</script>
+</body>
+
+</html>
